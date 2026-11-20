@@ -1,22 +1,11 @@
-<!---
-
-This file is used to generate your project datasheet. Please fill in the information below and delete any unused
-sections.
-
-You can also include images in this folder and reference them in the markdown. Each image must be less than
-512 kb in size, and the combined size of all images must be less than 1 MB.
--->
-
 ## How it works
 
-Explain how your project works
-It is a basic D Latch that has 2 inputs. 
+It is a basic D Latch built with 4 NAND gates that takes 2 inputs (`D` and `En`) and outputs `Q` and `Q_not`[cite: 1, 3]. When `En` is high, `Q` follows `D`; when `En` goes low, the latch holds its previous state[cite: 1, 3].
 
 ## How to test
 
-Explain how to use your project
-Utilize the D and Enable signals to note the values of Q and Q_not, and see if the last signal holds when enable is off. 
+Utilize the `D` (`ui[0]`) and `En` (`ui[1]`) signals to observe the values of `Q` (`uo[0]`) and `Q_not` (`uo[1]`), and verify that the last output state holds when `En` is off[cite: 1, 3].
+
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
-LED, Switches
+LEDs and DIP switches[cite: 1, 3]
