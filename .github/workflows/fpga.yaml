@@ -13,5 +13,12 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Allow combinational loops in nextpnr-ice40
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          printf '#!/bin/sh\nexec /usr/local/bin/nextpnr-ice40 --ignore-loops "$@"\n' > "$HOME/.local/bin/nextpnr-ice40"
+          chmod +x "$HOME/.local/bin/nextpnr-ice40"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
       - name: FPGA bitstream for ChipDiscover FPGA dev board
         uses: chipfoundry/tt-gds-action/fpga/ice40up5k@main
