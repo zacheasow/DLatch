@@ -10,11 +10,13 @@ You can also include images in this folder and reference them in the markdown. E
 ## How it works
 
 Explain how your project works
+It is a basic D Latch that has 2 inputs. 
 
 ## How to test
 
 Explain how to use your project
-
+Utilize the D and Enable signals to note the values of Q and Q_not, and see if the last signal holds when enable is off. 
 ## External hardware
 
 List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+LED, Switches
