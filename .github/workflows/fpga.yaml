@@ -13,12 +13,15 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Allow combinational loops in nextpnr-ice40
+      - name: Setup OSS CAD Suite
+        uses: YosysHQ/setup-oss-cad-suite@v3
+
+      - name: Wrap nextpnr-ice40 with --ignore-loops
         run: |
-          mkdir -p "$HOME/.local/bin"
-          printf '#!/bin/sh\nexec /usr/local/bin/nextpnr-ice40 --ignore-loops "$@"\n' > "$HOME/.local/bin/nextpnr-ice40"
-          chmod +x "$HOME/.local/bin/nextpnr-ice40"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          BIN_PATH=$(which nextpnr-ice40)
+          mv "$BIN_PATH" "${BIN_PATH}.real"
+          printf '#!/bin/sh\nexec "%s.real" --ignore-loops "$@"\n' "$BIN_PATH" > "$BIN_PATH"
+          chmod +x "$BIN_PATH"
 
       - name: FPGA bitstream for ChipDiscover FPGA dev board
         uses: chipfoundry/tt-gds-action/fpga/ice40up5k@main
