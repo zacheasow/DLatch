@@ -13,15 +13,5 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Configure nextpnr-ice40 to allow combinational loops
-        run: |
-          cat << 'EOF' > "$RUNNER_TEMP/bash_env.sh"
-          nextpnr-ice40() {
-            command nextpnr-ice40 --ignore-loops "$@"
-          }
-          export -f nextpnr-ice40
-          EOF
-          echo "BASH_ENV=$RUNNER_TEMP/bash_env.sh" >> "$GITHUB_ENV"
-
       - name: FPGA bitstream for ChipDiscover FPGA dev board
         uses: chipfoundry/tt-gds-action/fpga/ice40up5k@main
